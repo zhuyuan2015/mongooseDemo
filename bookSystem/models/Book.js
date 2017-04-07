@@ -7,11 +7,11 @@ var mongoose = require("mongoose");
 var db = require("./db.js");
 
 var bookSchema = new mongoose.Schema({
-    name: {type : String},
+    name:   {type : String},
     author: {type : String},
-    price: {type : Number},
-    type:  {type: Arrry}
+    price:  {type : Number},
+    type:   {type : Array}
 });
-
+bookSchema.statics.ad
 var bookModel = db.model("Book",bookSchema);
 module.exports = bookModel;

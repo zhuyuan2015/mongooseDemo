@@ -11,8 +11,9 @@ var app = express();
 var router = require("./controller/router.js");
 
 app.set("view engine", "ejs");
-app.get("/addBook", router.addBook);
-app.get("/doAddBook", router.doAddBook);
+app.get("/", router.showIndex);
+app.get("/addEditBook", router.showAddEditBook);
+app.get("/doAddEditBook", router.doAddEditBook);
 app.listen(3000);
 
 l(new Date());
