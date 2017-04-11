@@ -8,7 +8,6 @@ function l(n) {
 }
 
 var Book = require("../models/Book.js");
-var db = require("../models/db.js");
 var objectId = require("mongodb").ObjectID;
 
 //主页
@@ -27,7 +26,6 @@ exports.showIndex = function(req,res){
 //增加图书页面
 exports.showAddEditBook = function(req,res){
     var id = objectId(req.query.id);
-    l(isEmptyObject(id));
     if(!isEmptyObject(req.query)){
         Book.find(id,function(error,result){
             if(error){
@@ -53,15 +51,40 @@ exports.showAddEditBook = function(req,res){
     }
 }
 
-//增加图书
+//增加和修改图书
 exports.doAddEditBook = function(req,res){
-    Book.create(req.query,function(error){
-        if(error){
-            l(error);
-            return;
-        }
-        res.send("OK");
-    });
+    var data = req.query;
+    if(data.id == ""){
+        Book.create({
+            name: data.name,
+            author: data.author,
+            price: data.price,
+            type: data.type
+        },function(error){
+            if(error){
+                l(error);
+                return;
+            }
+            res.send("OK");
+        });
+    }else{
+        Book.update({
+            _id: objectId(data.id)
+        },{
+            $set:{
+                name: data.name,
+                author: data.author,
+                price: data.price,
+                type: data.type
+            }
+        },function(err,result){
+            if(err){
+                l(err);
+                return;
+            }
+            res.send(result);
+        });
+    }
 }
 
 function isEmptyObject(e) {

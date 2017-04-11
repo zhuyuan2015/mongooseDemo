@@ -9,8 +9,9 @@ function l(n) {
 
 // mongoose 链接
 var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-var db       = mongoose.createConnection('mongodb://127.0.0.1:27017/haha');
+    mongoose.Promise = global.Promise;
+var setting = require("../setting.js");
+var db       = mongoose.createConnection(setting.blog);
 
 module.exports = db;
 

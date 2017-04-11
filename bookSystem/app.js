@@ -2,9 +2,6 @@
  * Description：入口
  * Created by ZhuYuan on 2017/4/6
  */
-function l(n) {
-    console.log(n);
-}
 
 var express = require("express");
 var app = express();
@@ -18,3 +15,6 @@ app.listen(3000);
 
 l(new Date());
 
+function l(n) {
+    console.log(n);
+}

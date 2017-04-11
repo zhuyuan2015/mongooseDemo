@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+</head>
+<body>
+<%include header.ejs %>
+<h1>Edit</h1>
+<form action="/doAdd" method="get">
+    <div>
+        <label for="sid">ID</label>
+        <input type="text" id="sid" name="sid"/>
+    </div>
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required/>
+    </div>
+    <div>
+        <label for="author">Age</label>
+        <input type="text" id="age" name="age" required/>
+    </div>
+    <div>
+        <label>Sex</label>
+        <input type="radio" id="man" name="sex" value="man"/>
+        <label for="man">Man</label>
+        <input type="radio" id="woman" name="sex" value="woman"/>
+        <label for="woman">Woman</label>
+    </div>
+    <div>
+        <label>选修课程</label>
+        <%for(var i=0;i<course.length;i++){%>
+            <label for="<%=course[i].cid%>">
+                <input type="checkbox" id="<%=course[i].cid%>" name="Courses" value="<%=course[i].cid%>"/><%=course[i].name%>
+            </label>
+        <%}%>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
