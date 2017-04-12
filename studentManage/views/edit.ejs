@@ -10,22 +10,36 @@
 <form action="/doEdit" method="get">
     <div>
         <label for="sid">ID</label>
-        <input type="text" id="sid" name="sid" value="<%=sid%>" readonly="true"/>
+        <input type="text" id="sid" name="sid" value="<%=result.sid%>" readonly="true"/>
     </div>
     <div>
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" value="<%=name%>" required/>
+        <input type="text" id="name" name="name" value="<%=result.name%>" required/>
     </div>
     <div>
         <label for="author">Age</label>
-        <input type="text" id="age" name="age" value="<%=age%>" required/>
+        <input type="text" id="age" name="age" value="<%=result.age%>" required/>
     </div>
     <div>
         <label>Sex</label>
-        <input type="radio" id="man" name="Courses" <%if(sex == "man"){%> checked <%}%> value="man"/>
+        <input type="radio" id="man" name="sex" <%if(result.sex == "man"){%> checked <%}%> value="man"/>
         <label for="man">Man</label>
-        <input type="radio" id="woman" name="Courses" <%if(sex == "woman"){%> checked <%}%> value="woman"/>
+        <input type="radio" id="woman" name="sex" <%if(result.sex == "woman"){%> checked <%}%> value="woman"/>
         <label for="woman">Woman</label>
+    </div>
+    <div>
+        <label>已经选修课程</label>
+        <%for(var i=0;i<course.length;i++){
+            if(result.Courses.indexOf(course[i].cid) != -1){
+                var c = "checked";
+            }else{
+                var c = "";
+            }
+        %>
+            <label for="<%=course[i].cid%>">
+                <input type="checkbox" id="<%=course[i].cid%>" name="Courses" value="<%=course[i].cid%>" <%=c%> /><%=course[i].name%>
+            </label>
+        <%}%>
     </div>
     <button type="submit">Submit</button>
 </form>

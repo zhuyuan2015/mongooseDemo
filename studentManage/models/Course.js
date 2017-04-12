@@ -17,8 +17,6 @@ courseSchema.index({
 //课程中添加学生
 courseSchema.statics.addStudent = function(courseArray,cid,callback){
     for(var i=0;i<courseArray.length;i++){
-        console.log(courseArray[i]);
-        console.log(cid);
         Course.update({
             cid:courseArray[i]
         },{
